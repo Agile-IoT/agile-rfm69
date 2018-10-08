@@ -1,6 +1,7 @@
 from __future__ import division, absolute_import, print_function, unicode_literals
 from time import sleep, time
 import logging
+import os
 import struct
 
 from .configuration import IRQFlags1, IRQFlags2, OpMode, Temperature1, RSSIConfig
@@ -38,9 +39,12 @@ class RFM69(object):
         self.high_power = high_power
         self.rx_restarts = 0
         self.log.info("Initialised successfully")
+        self.mock_period = os.getenv("RFM_MOCK_PERIOD")
+        if not self.mock_period:
+            self.mock_period = 5
 
     def wait_for_packet(self, timeout=None):
-        # sleep(5)
+        sleep(self.mock_period)
         return (bytearray([1, 2, 0, 0, 38, 8, 51, 0, 0, 142, 0, 85, 176, 0, 139, 15, 160]), -30)
 
     def send_packet(self, data, preamble=None):
