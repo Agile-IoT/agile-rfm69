@@ -20,6 +20,12 @@ def run():
 		yield conn.requestBusName(BUS_NAME)
 		logger.debug("Object exported on bus name {} with path {}" \
 			.format(BUS_NAME, PROTOCOL_PATH))
+		
+		# Register in ProtocolManager
+		manager = yield conn.getRemoteObject("org.eclipse.agail.ProtocolManager",
+								"/org/eclipse/agail/ProtocolManager")
+		yield manager.callRemote("Add", "RFM69")
+		logger.debug("Registered protocol with ProtocolManager")
 
 	except Exception:
 		logger.exception("Failed to export object: ")

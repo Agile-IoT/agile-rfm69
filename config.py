@@ -82,9 +82,9 @@ MODEM_CONFIG_TABLE = \
 MODEM_CONFIG = "GFSK_Rb250Fd250" # <-default used in RFM69 lib but FSK_Rb55555Fd50 is better...
 MODEM_KEY = "0123456789012345"
 
-BUS_NAME = "iot.agile.Protocol"
+BUS_NAME = "org.eclipse.agail.protocol." + PROTOCOL_NAME
 PROTOCOL_NAME = "RFM69"
-PROTOCOL_PATH = "/iot/agile/Protocol/" + PROTOCOL_NAME + "/socket0"
+PROTOCOL_PATH = "/org/eclipse/agail/protocol/" + PROTOCOL_NAME
 
 CHANNEL = 1
 RECEIVE_TIMEOUT = 15
