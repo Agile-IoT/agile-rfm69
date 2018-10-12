@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 	gir1.2-gtk-3.0 \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 	
-RUN	curl -O -J https://download.gnome.org/sources/glib/2.57/glib-2.57.1.tar.xz
+# RUN	curl -O -J https://download.gnome.org/sources/glib/2.57/glib-2.57.1.tar.xz
 
 # resin-sync will always sync to /usr/src/app, so code needs to be here.
 WORKDIR /usr/src/app
