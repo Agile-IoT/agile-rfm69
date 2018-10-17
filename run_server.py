@@ -10,7 +10,10 @@ from dbus_rfm_69 import *
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
-logger.addHandler(logging.StreamHandler())
+th = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+th.setFormatter(formatter)
+logger.addHandler(th)
 
 @defer.inlineCallbacks
 def run():
