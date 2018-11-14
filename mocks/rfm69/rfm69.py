@@ -42,6 +42,8 @@ class RFM69(object):
         self.mock_period = os.getenv("RFM_MOCK_PERIOD")
         if not self.mock_period:
             self.mock_period = 5
+        else:
+            self.mock_period = float(self.mock_period)
 
     def wait_for_packet(self, timeout=None):
         sleep(self.mock_period)
