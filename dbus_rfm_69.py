@@ -175,7 +175,7 @@ class Rfm69DBusService(objects.DBusObject):
 				"%s@Receive: Module is not connected", self._full_path)
 			raise self.IOError("Module is not connected.")
 		
-		response = self._rfm69.wait_for_packet(timeout=60.0)
+		response = self._rfm69.wait_for_packet(timeout=60)
 		if response:
 			(data, rssi) = response
 			self._logger.debug("%s@Receive: receiveDone()", self._full_path)
