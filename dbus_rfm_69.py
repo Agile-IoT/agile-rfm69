@@ -211,6 +211,3 @@ class Rfm69DBusService(objects.DBusObject):
 	
 	def dbus_StopDiscovery(self):
 		pass
-	
-	def dbus_Devices(self):
-		return []
