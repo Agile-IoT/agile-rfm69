@@ -6,7 +6,8 @@ import time
 
 from twisted.internet import reactor, defer
 from txdbus import client, objects, error
-from txdbus.interface import DBusInterface, Method
+from txdbus.interface import DBusInterface, Method, Property
+from txdbus.objects import DBusProperty
 
 from config import *
 import rfm69
