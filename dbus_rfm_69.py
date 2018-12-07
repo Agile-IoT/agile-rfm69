@@ -35,12 +35,17 @@ class Rfm69DBusService(objects.DBusObject):
 					Method("Receive", returns="a{sv}"),
 					Method("Name", returns="s"),
 					Method("Driver", returns="s"),
-					Method("Discover", returns="a{sv}"),
 					Method("Exec", arguments="a{sv}"),
-					Method("Subscribe", arguments="a{sv}")
+					Method("Subscribe", arguments="a{sv}"),
+					Method("StartDiscovery"),
+					Method("StopDiscovery"),
+					Method("Devices", returns="a{sv}"),
+					Method("Data", returns="a{sv}"),
+					Method("Status", returns="n")
 					)
 	
 	dbusInterfaces = [iface]
+	_lastRecord = {}
 	
 	def __init__(self, objectPath):
 		super(Rfm69DBusService, self).__init__(objectPath)
@@ -179,9 +184,11 @@ class Rfm69DBusService(objects.DBusObject):
 		if response:
 			(data, rssi) = response
 			self._logger.debug("%s@Receive: receiveDone()", self._full_path)
-			return {"DATA": data, "RSSI": rssi, "STATUS": "OK"}
+			self._lastRecord = {"DATA": data, "RSSI": rssi, "STATUS": "OK"}
 		else:
-			return {"STATUS": "TIMEOUT"}
+			self._lastRecord = {"STATUS": "TIMEOUT"}
+		
+		return _lastRecord
 	
 	def dbus_Name(self):
 		return PROTOCOL_NAME
@@ -189,12 +196,20 @@ class Rfm69DBusService(objects.DBusObject):
 	def dbus_Driver(self):
 		return "No driver."
 	
-	def dbus_Discover(self, args):
-		raise self.NotImplementedError("Function not supported.")
-	
-	def dbus_Exec(self, op, args):
-		raise self.NotImplementedError("Function not supported.")
-	
 	def dbus_Subscribe(self, args):
 		raise self.NotImplementedError("Function not supported.")
-		
+	
+	def dbus_StartDiscovery(self):
+		pass
+	
+	def dbus_StopDiscovery(self):
+		pass
+	
+	def dbus_Devices(self):
+		return []
+	
+	def Data(self):
+		return self._lastRecord
+	
+	def Status(self):
+		return 0
