@@ -56,7 +56,7 @@ class Rfm69DBusService(objects.DBusObject):
 	def __init__(self, objectPath):
 		super(Rfm69DBusService, self).__init__(objectPath)
 		
-		self._lastRecord = {}
+		self._lastRecord = {"STATUS": "TIMEOUT"}
 		self._status = 0
 		self._driver = "No driver"
 		self._name = PROTOCOL_NAME
