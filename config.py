@@ -85,6 +85,7 @@ MODEM_KEY = "0123456789012345"
 PROTOCOL_NAME = "RFM69"
 BUS_NAME = "org.eclipse.agail.protocol." + PROTOCOL_NAME
 PROTOCOL_PATH = "/org/eclipse/agail/protocol/" + PROTOCOL_NAME
+AGILE_NEW_RECORD_SIGNAL_PATH = "/org/eclipse/agail/NewRecord"
 
 CHANNEL = 1
 RECEIVE_TIMEOUT = 15
