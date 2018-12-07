@@ -33,22 +33,34 @@ class Rfm69DBusService(objects.DBusObject):
 					Method("Setup", arguments="a{sv}"),
 					Method("Send", arguments="a{sv}"),
 					Method("Receive", returns="a{sv}"),
-					Method("Name", returns="s"),
-					Method("Driver", returns="s"),
 					Method("Exec", arguments="a{sv}"),
 					Method("Subscribe", arguments="a{sv}"),
 					Method("StartDiscovery"),
 					Method("StopDiscovery"),
-					Method("Devices", returns="a{sv}"),
-					Method("Data", returns="a{sv}"),
-					Method("Status", returns="n")
+					Property("Devices", "a{sv}", writeable=False),
+					Property("Name", "s", writeable=False),
+					Property("Driver", "s", writeable=False),
+					Property("Data", "a{sv}", writeable=False),
+					Property("Status", "n", writeable=False)
 					)
 	
+	_devices = DBusProperty("Devices")
+	_name = DBusProperty("Name")
+	_driver = DBusProperty("Driver")
+	_lastRecord = DBUSProperty("Data")
+	_status = DBusProperty("Status")
+	
 	dbusInterfaces = [iface]
-	_lastRecord = {}
 	
 	def __init__(self, objectPath):
 		super(Rfm69DBusService, self).__init__(objectPath)
+		
+		self._lastRecord = {}
+		self._status = 0
+		self._driver = "No driver"
+		self._name = PROTOCOL_NAME
+		self._devices = []
+		
 		self._logger = logging.getLogger()
 		self._full_path = PROTOCOL_PATH
 		self._connected = False
@@ -189,13 +201,7 @@ class Rfm69DBusService(objects.DBusObject):
 			self._lastRecord = {"STATUS": "TIMEOUT"}
 		
 		return _lastRecord
-	
-	def dbus_Name(self):
-		return PROTOCOL_NAME
 		
-	def dbus_Driver(self):
-		return "No driver."
-	
 	def dbus_Subscribe(self, args):
 		raise self.NotImplementedError("Function not supported.")
 	
@@ -207,9 +213,3 @@ class Rfm69DBusService(objects.DBusObject):
 	
 	def dbus_Devices(self):
 		return []
-	
-	def Data(self):
-		return self._lastRecord
-	
-	def Status(self):
-		return 0
