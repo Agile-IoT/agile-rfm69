@@ -201,7 +201,7 @@ class Rfm69DBusService(objects.DBusObject):
 		else:
 			self._lastRecord = {"STATUS": "TIMEOUT"}
 		
-		return _lastRecord
+		return self._lastRecord
 		
 	def dbus_Subscribe(self, args):
 		raise self.NotImplementedError("Function not supported.")
