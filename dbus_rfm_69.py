@@ -48,7 +48,7 @@ class Rfm69DBusService(objects.DBusObject):
 	_devices = DBusProperty("Devices")
 	_name = DBusProperty("Name")
 	_driver = DBusProperty("Driver")
-	_lastRecord = DBUSProperty("Data")
+	_lastRecord = DBusProperty("Data")
 	_status = DBusProperty("Status")
 	
 	dbusInterfaces = [iface]
