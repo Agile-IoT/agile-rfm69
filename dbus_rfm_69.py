@@ -59,7 +59,7 @@ class Rfm69DBusService(objects.DBusObject):
 		self._status = 0
 		self._driver = "No driver"
 		self._name = PROTOCOL_NAME
-		self._devices = []
+		self._devices = ["None"]
 		
 		self._logger = logging.getLogger()
 		self._full_path = PROTOCOL_PATH
