@@ -34,7 +34,6 @@ class Rfm69DBusService(objects.DBusObject):
 					Method("Setup", arguments="a{sv}"),
 					Method("Send", arguments="a{sv}"),
 					Method("Receive", returns="a{sv}"),
-					Method("Exec", arguments="a{sv}"),
 					Method("Subscribe", arguments="a{sv}"),
 					Method("StartDiscovery"),
 					Method("StopDiscovery"),
