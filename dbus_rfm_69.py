@@ -38,7 +38,7 @@ class Rfm69DBusService(objects.DBusObject):
 					Method("Subscribe", arguments="a{sv}"),
 					Method("StartDiscovery"),
 					Method("StopDiscovery"),
-					Property("Devices", "a{sv}", writeable=False),
+					Property("Devices", "av", writeable=False),
 					Property("Name", "s", writeable=False),
 					Property("Driver", "s", writeable=False),
 					Property("Data", "a{sv}", writeable=False),
