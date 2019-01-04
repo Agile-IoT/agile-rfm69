@@ -1,5 +1,5 @@
 RPi.GPIO==0.6.3
 spidev==3.2
-https://github.com/airex-tech/rfm69-python/archive/master.zip
+https://github.com/airex-tech/rfm69-python/archive/fixes.zip
 Twisted==18.7.0
 txdbus==1.1.0
