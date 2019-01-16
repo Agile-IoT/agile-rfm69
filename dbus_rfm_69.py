@@ -129,11 +129,6 @@ class Rfm69DBusService(objects.DBusObject):
 	def dbus_Disconnect(self):
 		self._logger.debug(
 			"%s@Disconnect: Disconnect INIT", self._full_path)
-		if not self._getConnected():
-			self._logger.debug(
-				"%s@Disconnect: Module is already disconnected", self._full_path)
-			raise self.IOError("Module is already disconnected.")
-		
 		self._setConnected(False)
 		self._rfm69.disconnect()
 		self._logger.debug("%s@Disconnect: Disconnect OK", self._full_path) 
