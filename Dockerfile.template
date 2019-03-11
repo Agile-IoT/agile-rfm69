@@ -1,4 +1,4 @@
-ARG BASEIMAGE_BUILD=resin/%%RESIN_MACHINE_NAME%%-debian:stretch
+ARG BASEIMAGE_BUILD=balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch
 FROM $BASEIMAGE_BUILD
 
 # Install dependencies
